@@ -11,6 +11,4 @@ Rails.application.routes.draw do
       root to: "posts#index", as: :authenticated_root
     end
   end
-
-  get "visitante", to: "posts#publico"
 end
