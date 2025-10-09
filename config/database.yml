@@ -81,18 +81,18 @@ test:
 production:
   primary: &primary_production
     <<: *default
-    database: blog_ramos_production
-    username: blog_ramos
+    database: posts
+    username: arthurrv
     password: <%= ENV["BLOG_RAMOS_DATABASE_PASSWORD"] %>
   cache:
     <<: *primary_production
-    database: blog_ramos_production_cache
+    database: posts
     migrations_paths: db/cache_migrate
   queue:
     <<: *primary_production
-    database: blog_ramos_production_queue
+    database: posts
     migrations_paths: db/queue_migrate
   cable:
     <<: *primary_production
-    database: blog_ramos_production_cable
+    database: posts
     migrations_paths: db/cable_migrate
