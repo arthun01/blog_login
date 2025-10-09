@@ -1,10 +1,15 @@
 <div id="<%= dom_id post %>" class="w-full sm:w-auto my-5 space-y-5">
   <div>
-    <strong class="block font-medium mb-1">Título:</strong>
+    <strong class="block font-medium mb-1 text-gray-900">Título:</strong>
     <%= post.title %>
   </div>
   <div>
-    <strong class="block font-medium mb-1">Conteúdo:</strong>
-    <%= post.content %>
+    <strong class="block font-medium mb-1 text-gray-900">Conteúdo:</strong>
+    <p class="text-md text-justify text-gray-900">
+      <%= post.content %>
+    </p>
   </div>
+  <p class="text-sm text-gray-500 mt-2">
+    Última Atualização: <%= post.updated_at.strftime("%d/%m/%Y às %H:%M") %>
+  </p>
 </div>
