@@ -17,6 +17,7 @@ production:
     database: posts
     username: arthun01
     password: <%= ENV["BLOG_RAMOS_DATABASE_PASSWORD"] %>
+    host: <%= ENV["DB_HOST"] || "blog_ramos-db" %>
   cache:
     <<: *primary_production
     database: posts
