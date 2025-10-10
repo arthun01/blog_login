@@ -13,9 +13,10 @@ test:
 
 production:
   <<: *default
-  url: <%= ENV["DATABASE_URL"] %>
+  # use DATABASE_URL fornecido pelo Heroku (URL completa)
+  url: <%= ENV['DATABASE_URL'] %>
 
-# 🔧 Adicionando a configuração do banco para o Solid Cable
+# configuração específica para o Solid Cable (vai usar o mesmo DATABASE_URL por padrão)
 cable:
   <<: *default
-  url: <%= ENV["DATABASE_URL"] %>
+  url: <%= ENV['CABLE_DATABASE_URL'] || ENV['DATABASE_URL'] %>
