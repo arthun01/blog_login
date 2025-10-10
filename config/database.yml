@@ -12,21 +12,11 @@ test:
   database: blog_ramos_test
 
 production:
-  primary: &primary_production
-    <<: *default
-    database: posts
-    username: arthun01
-    password: <%= ENV["BLOG_RAMOS_DATABASE_PASSWORD"] %>
-    host: <%= ENV["DB_HOST"] || "blog_ramos-db" %>
-  cache:
-    <<: *primary_production
-    database: posts
-    migrations_paths: db/cache_migrate
-  queue:
-    <<: *primary_production
-    database: posts
-    migrations_paths: db/queue_migrate
-  cable:
-    <<: *primary_production
-    database: posts
-    migrations_paths: db/cable_migrate
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  database: <%= ENV["PGDATABASE"] %>
+  username: <%= ENV["PGUSER"] %>
+  password: <%= ENV["PGPASSWORD"] %>
+  host: <%= ENV["PGHOST"] %>
+
