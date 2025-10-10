@@ -12,13 +12,10 @@ test:
   database: blog_ramos_test
 
 production:
-  adapter: postgresql
-  encoding: unicode
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  database: <%= ENV["PGDATABASE"] %>
-  username: <%= ENV["PGUSER"] %>
-  password: <%= ENV["PGPASSWORD"] %>
-  host: <%= ENV["PGHOST"] %>
+  <<: *default
+  url: <%= ENV["DATABASE_URL"] %>
 
-  
-
+# 🔧 Adicionando a configuração do banco para o Solid Cable
+cable:
+  <<: *default
+  url: <%= ENV["DATABASE_URL"] %>
