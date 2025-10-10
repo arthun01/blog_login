@@ -16,13 +16,26 @@ env:
     - RAILS_MASTER_KEY
     - BLOG_RAMOS_DATABASE_PASSWORD
   clear:
-    DB_HOST: localhost
+    DB_HOST: blog_ramos-db
     DB_NAME: posts
     DB_USER: arthun01
 
 volumes:
   - blog_ramos_storage:/rails/storage
   - blog_ramos_pgdata:/var/lib/postgresql/data
+
+accessories:
+  db:
+    hosts:
+      - 134.209.10.76
+    image: postgres:16
+    env:
+      clear:
+        POSTGRES_USER: arthun01
+      secret:
+        - BLOG_RAMOS_DATABASE_PASSWORD
+    volumes:
+      - blog_ramos_pgdata:/var/lib/postgresql/data
 
 asset_path: /rails/public/assets
 
