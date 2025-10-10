@@ -1,13 +1,10 @@
 service: blog_ramos
+
 image: arthun01/blog_ramos
 
 servers:
   web:
-    - 64.23.248.100
-
-# proxy:
-#   ssl: true
-  # host: blogramos.com.br   # use seu domínio depois; por agora pode comentar essa linha
+    - 134.209.10.76
 
 registry:
   username: arthun01
@@ -19,27 +16,15 @@ env:
     - RAILS_MASTER_KEY
     - BLOG_RAMOS_DATABASE_PASSWORD
   clear:
-    RAILS_ENV: production
-    DB_HOST: blog_ramos-db
+    DB_HOST: localhost
     DB_NAME: posts
     DB_USER: arthun01
-    DB_PASSWORD: "<%= ENV['BLOG_RAMOS_DATABASE_PASSWORD'] %>"
-    SOLID_QUEUE_IN_PUMA: true
 
 volumes:
-  - "blog_ramos_storage:/rails/storage"
+  - blog_ramos_storage:/rails/storage
+  - blog_ramos_pgdata:/var/lib/postgresql/data
 
 asset_path: /rails/public/assets
 
 builder:
   arch: amd64
-
-accessories:
-  db:
-    image: postgres:16
-    host: 192.168.0.2
-    env:
-      secret:
-        - BLOG_RAMOS_DATABASE_PASSWORD
-    volumes:
-      - blog_ramos_pgdata:/var/lib/postgresql/data
